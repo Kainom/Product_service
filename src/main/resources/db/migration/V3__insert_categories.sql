@@ -1,14 +1,15 @@
+USE products;
 INSERT INTO
-    products.category (id, nome)
+    category (nome)
 VALUES
-    (1, 'Eletrônico');
+    ('Eletrônico');
 
 INSERT INTO
-    products.category (id, nome)
+    category (nome)
 VALUES
-    (2, 'Móveis');
+    ('Móveis');
 
 INSERT INTO
-    products.category (id, nome)
+    category (nome)
 VALUES
-    (3, 'Brinquedos');
+    ('Brinquedos');

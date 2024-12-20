@@ -1,9 +1,18 @@
 package kainom.product_api.patterns;
 
+import org.springframework.stereotype.Component;
+
 import kainom.product_api.dto.ProductDTO;
 import kainom.product_api.model.Product;
 
+@Component
 public class ProductAdapter implements IProductAdapter {
+    private final CategoryAdapter categoryAdapter;
+    
+    public ProductAdapter(CategoryAdapter categoryAdapter) {
+        this.categoryAdapter = categoryAdapter;
+    }
+
 
     @Override
     public ProductDTO toDTO(Product product) {
@@ -12,7 +21,7 @@ public class ProductAdapter implements IProductAdapter {
         productDTO.setNome(product.getNome());
         productDTO.setDescricao(product.getDescricao());
         productDTO.setPreco(product.getPreco());
-        productDTO.setCategory(new CategoryAdapter().toDTO(product.getCategory())); // Assuming Category has an adapter as well
+        productDTO.setCategory(categoryAdapter.toDTO(product.getCategory()));
 
         return productDTO;
     }
@@ -24,7 +33,7 @@ public class ProductAdapter implements IProductAdapter {
         product.setNome(productDTO.getNome());
         product.setDescricao(productDTO.getDescricao());
         product.setPreco(productDTO.getPreco());
-        product.setCategory(new CategoryAdapter().toCategory(productDTO.getCategory())); // Assuming Category has an adapter as well
+        product.setCategory(categoryAdapter.toCategory(productDTO.getCategory()));
 
         return product;
         
