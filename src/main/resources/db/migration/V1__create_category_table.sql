@@ -1,0 +1,9 @@
+
+CREATE SCHEMA IF NOT EXISTS products;
+ 
+USE products;
+ 
+CREATE TABLE category (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL
+);

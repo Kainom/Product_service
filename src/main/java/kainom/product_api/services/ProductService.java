@@ -12,16 +12,19 @@ import kainom.product_api.dto.ProductDTO;
 import kainom.product_api.model.Category;
 import kainom.product_api.model.Product;
 import kainom.product_api.patterns.IProductAdapter;
+import kainom.product_api.patterns.ProductAdapter;
 import kainom.product_api.repository.ProductRepository;
 
 @Service
 public class ProductService {
 
-    @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
     private IProductAdapter productAdapter;
+
+    public ProductService(ProductRepository productRepository, IProductAdapter productAdapter) {
+        this.productRepository = productRepository;
+        this.productAdapter = productAdapter;
+    }
 
     public List<ProductDTO> getAll() {
         List<Product> products = productRepository.findAll();

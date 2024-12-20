@@ -1,13 +1,14 @@
 package kainom.product_api.patterns;
 
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import kainom.product_api.dto.CategoryDTO;
 import kainom.product_api.model.Category;
 
 
-@Service
+
+@Component
 public class CategoryAdapter implements ICategoryAdapter {
     
 

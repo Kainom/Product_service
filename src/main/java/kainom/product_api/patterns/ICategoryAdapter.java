@@ -1,6 +1,7 @@
 package kainom.product_api.patterns;
 
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import kainom.product_api.dto.CategoryDTO;

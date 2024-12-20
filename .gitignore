@@ -4,6 +4,13 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
+### Docker things ###
+Dockerfile
+docker-compose.yml
+*.properties
+
+
 ### STS ###
 .apt_generated
 .classpath
