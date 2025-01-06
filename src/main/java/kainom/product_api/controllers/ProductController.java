@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kainom.dtos.ProductDTO;
+
 import jakarta.validation.Valid;
-import kainom.product_api.dto.ProductDTO;
 import kainom.product_api.services.ProductService;
 
 @RestController

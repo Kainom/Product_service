@@ -2,17 +2,14 @@ package kainom.product_api.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kainom.product_api.dto.ProductDTO;
-import kainom.product_api.model.Category;
+import com.kainom.dtos.ProductDTO;
+
 import kainom.product_api.model.Product;
 import kainom.product_api.patterns.IProductAdapter;
-import kainom.product_api.patterns.ProductAdapter;
 import kainom.product_api.repository.ProductRepository;
 
 @Service
