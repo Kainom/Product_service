@@ -6,11 +6,15 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.kainom.adapter.product.CategoryAdapter;
+import com.kainom.dtos.CategoryDTO;
 import com.kainom.dtos.ProductDTO;
 import com.kainom.err.CategoryNotFoundException;
 import com.kainom.err.ProductNotFoundException;
 
+import kainom.product_api.model.Category;
 import kainom.product_api.model.Product;
+import kainom.product_api.patterns.ICategoryAdapter;
 import kainom.product_api.patterns.IProductAdapter;
 import kainom.product_api.repository.CategoryRepository;
 import kainom.product_api.repository.ProductRepository;
@@ -21,12 +25,15 @@ public class ProductService {
     private ProductRepository productRepository;
     private IProductAdapter productAdapter;
     private CategoryRepository categoryRepository;
+    private ICategoryAdapter categoryAdapter;
 
     public ProductService(ProductRepository productRepository, IProductAdapter productAdapter,
+            ICategoryAdapter categoryAdapter,
             CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.productAdapter = productAdapter;
         this.categoryRepository = categoryRepository;
+        this.categoryAdapter = categoryAdapter;
     }
 
     public List<ProductDTO> getAll() {
@@ -63,6 +70,12 @@ public class ProductService {
 
         Product product = productAdapter.toProduct(productDTO);
         return productAdapter.toDTO(productRepository.save(product));
+    }
+
+    public CategoryDTO save(CategoryDTO categoryDTO) {
+        Category category =  categoryAdapter.toCategory(categoryDTO);
+        return categoryAdapter.toDTO(categoryRepository.save(category));
+
     }
 
     public void deleteById(Long id) {

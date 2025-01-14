@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kainom.dtos.CategoryDTO;
 import com.kainom.dtos.ProductDTO;
 
 import jakarta.validation.Valid;
@@ -20,27 +21,32 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/product")
+    @GetMapping("/")
     public List<ProductDTO> getAllProducts() {
         return productService.getAll();
     }
 
-    @GetMapping("/product/category/{categoryId}")
+    @GetMapping("/category/{categoryId}")
     public List<ProductDTO> getProductByCategoryList(@PathVariable("categoryId") Long categoryId) {
         return productService.geProductByCategory(categoryId);
     }
 
-    @GetMapping("/product/{productIdentifier}")
+    @GetMapping("/{productIdentifier}")
     public ProductDTO getProductByProductIdentifier(@PathVariable("productIdentifier") String productIdentifier) {
         return productService.findByProductIdentifier(productIdentifier);
     }
 
-    @PostMapping("/product")
+    @PostMapping("/")
     public ProductDTO createProduct(@Valid @RequestBody ProductDTO productDTO) {
         return productService.save(productDTO);
     }
+    
+    @PostMapping("/category")
+    public CategoryDTO createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+        return productService.save(categoryDTO);
+    }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable("id") Long id) {
         productService.deleteById(id);
     }

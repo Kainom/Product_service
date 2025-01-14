@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import kainom.product_api.model.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category,Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+    Category findByNome(String nome);
 
 }
