@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.0</version>
+		<version>3.4.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>kainom</groupId>
@@ -29,6 +29,7 @@
 	</scm>
 	<properties>
 		<java.version>23</java.version>
+		<docker.image.prefix>loja</docker.image.prefix>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -93,11 +94,11 @@
 
 		</dependency>
 		<dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.30</version>
-      <scope>provided</scope>
-    </dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -128,6 +129,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- Plugin do Docker (Spotify) para criar a imagem -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.9</version>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+					<dockerFile>${project.basedir}/src/main/docker/Dockerfile</dockerFile>
+					<tags>
+						<tag>${project.version}</tag>
+					</tags>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
